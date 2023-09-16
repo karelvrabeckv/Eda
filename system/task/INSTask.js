@@ -1,0 +1,145 @@
+//This file is used for setting random numbers (0-10) to variables 'EDAGAME[A-K]INS'.
+//These numbers are mutually different and used in the Task System of 'Instruments' game, where they represent task sounds.
+
+var EDAGAMEAINS;
+function EDAGAMENumAINS() {
+	
+	EDAGAMEAINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEAINS);
+	document.getElementById('EDAGAMENumber').innerHTML = EDAGAMEAINS;
+	EDAGAMENumBINS();
+	
+};
+
+var EDAGAMEBINS;
+function EDAGAMENumBINS() {
+	
+	EDAGAMEBINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEBINS);
+	if (EDAGAMEBINS == EDAGAMEAINS) {EDAGAMENumBINS();}
+	else {EDAGAMENumCINS();};
+	
+};
+
+var EDAGAMECINS;
+function EDAGAMENumCINS() {
+	
+	EDAGAMECINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMECINS);
+	if ((EDAGAMECINS == EDAGAMEAINS) || 
+		(EDAGAMECINS == EDAGAMEBINS)) {EDAGAMENumCINS();}
+	else {EDAGAMENumDINS();};
+	
+};
+
+var EDAGAMEDINS;
+function EDAGAMENumDINS() {
+	
+	EDAGAMEDINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEDINS);
+	if ((EDAGAMEDINS == EDAGAMEAINS) ||
+		(EDAGAMEDINS == EDAGAMEBINS) ||
+		(EDAGAMEDINS == EDAGAMECINS)) {EDAGAMENumDINS();}
+	else {EDAGAMENumEINS();};
+	
+};
+
+var EDAGAMEEINS;
+function EDAGAMENumEINS() {
+	
+	EDAGAMEEINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEEINS);
+	if ((EDAGAMEEINS == EDAGAMEAINS) || 
+		(EDAGAMEEINS == EDAGAMEBINS) || 
+		(EDAGAMEEINS == EDAGAMECINS) || 
+		(EDAGAMEEINS == EDAGAMEDINS)) {EDAGAMENumEINS();}
+	else {EDAGAMENumFINS();};
+	
+};
+
+var EDAGAMEFINS;
+function EDAGAMENumFINS() {
+	
+	EDAGAMEFINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEFINS);
+	if ((EDAGAMEFINS == EDAGAMEAINS) ||
+		(EDAGAMEFINS == EDAGAMEBINS) ||
+		(EDAGAMEFINS == EDAGAMECINS) ||
+		(EDAGAMEFINS == EDAGAMEDINS) ||
+		(EDAGAMEFINS == EDAGAMEEINS)) {EDAGAMENumFINS();}
+	else {EDAGAMENumGINS();};
+	
+};
+
+var EDAGAMEGINS;
+function EDAGAMENumGINS() {
+	
+	EDAGAMEGINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEGINS);
+	if ((EDAGAMEGINS == EDAGAMEAINS) ||
+		(EDAGAMEGINS == EDAGAMEBINS) ||
+		(EDAGAMEGINS == EDAGAMECINS) ||
+		(EDAGAMEGINS == EDAGAMEDINS) ||
+		(EDAGAMEGINS == EDAGAMEEINS) ||
+		(EDAGAMEGINS == EDAGAMEFINS)) {EDAGAMENumGINS();}
+	else {EDAGAMENumHINS();};
+	
+};
+
+var EDAGAMEHINS;
+function EDAGAMENumHINS() {
+	
+	EDAGAMEHINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEHINS);
+	if ((EDAGAMEHINS == EDAGAMEAINS) ||
+		(EDAGAMEHINS == EDAGAMEBINS) ||
+		(EDAGAMEHINS == EDAGAMECINS) ||
+		(EDAGAMEHINS == EDAGAMEDINS) ||
+		(EDAGAMEHINS == EDAGAMEEINS) ||
+		(EDAGAMEHINS == EDAGAMEFINS) ||
+		(EDAGAMEHINS == EDAGAMEGINS)) {EDAGAMENumHINS();}
+	else {EDAGAMENumIINS();};
+	
+};
+
+var EDAGAMEIINS;
+function EDAGAMENumIINS() {
+	
+	EDAGAMEIINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEIINS);
+	if ((EDAGAMEIINS == EDAGAMEAINS) ||
+		(EDAGAMEIINS == EDAGAMEBINS) ||
+		(EDAGAMEIINS == EDAGAMECINS) ||
+		(EDAGAMEIINS == EDAGAMEDINS) ||
+		(EDAGAMEIINS == EDAGAMEEINS) ||
+		(EDAGAMEIINS == EDAGAMEFINS) ||
+		(EDAGAMEIINS == EDAGAMEGINS) ||
+		(EDAGAMEIINS == EDAGAMEHINS)) {EDAGAMENumIINS();}
+	else {EDAGAMENumJINS();};
+	
+};
+
+var EDAGAMEJINS;
+function EDAGAMENumJINS() {
+	
+	EDAGAMEJINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEJINS);
+	if ((EDAGAMEJINS == EDAGAMEAINS) ||
+		(EDAGAMEJINS == EDAGAMEBINS) ||
+		(EDAGAMEJINS == EDAGAMECINS) ||
+		(EDAGAMEJINS == EDAGAMEDINS) ||
+		(EDAGAMEJINS == EDAGAMEEINS) ||
+		(EDAGAMEJINS == EDAGAMEFINS) ||
+		(EDAGAMEJINS == EDAGAMEGINS) ||
+		(EDAGAMEJINS == EDAGAMEHINS) ||
+		(EDAGAMEJINS == EDAGAMEIINS)) {EDAGAMENumJINS();}
+	else {EDAGAMENumKINS();};
+	
+};
+
+var EDAGAMEKINS;
+function EDAGAMENumKINS() {
+	
+	EDAGAMEKINS = Math.floor(Math.random() * EDAGAMESounds.length); Number(EDAGAMEKINS);
+	if ((EDAGAMEKINS == EDAGAMEAINS) ||
+		(EDAGAMEKINS == EDAGAMEBINS) ||
+		(EDAGAMEKINS == EDAGAMECINS) ||
+		(EDAGAMEKINS == EDAGAMEDINS) ||
+		(EDAGAMEKINS == EDAGAMEEINS) ||
+		(EDAGAMEKINS == EDAGAMEFINS) ||
+		(EDAGAMEKINS == EDAGAMEGINS) ||
+		(EDAGAMEKINS == EDAGAMEHINS) ||
+		(EDAGAMEKINS == EDAGAMEIINS) ||
+		(EDAGAMEKINS == EDAGAMEJINS)) {EDAGAMENumKINS();};
+		
+};

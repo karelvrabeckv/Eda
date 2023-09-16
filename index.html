@@ -1,0 +1,885 @@
+﻿<!DOCTYPE html>
+<html lang='cs'>
+
+ <head>
+
+  <title>Eda - Webová hra pro děti</title>
+
+  <!-- Informations -->
+  <meta charset='UTF-8'>
+  <meta name='author' content='Karel Vrabec'>
+  <meta name='keywords' content='Eda,EDA,Webová hra,WEBOVÁ HRA,Webová hra pro děti,Hra pro děti,Děti'>
+  <meta name='description' content='Webová hra Eda je zábavní a výukový nástroj pro děti v předškolním a mladším školním věku (3 - 12 let).'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+
+  <!-- Styles -->
+  <link rel="shortcut icon" type="image/x-icon" href="Favicon.png">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Comfortaa'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+  <link rel='stylesheet' type='text/css' href='style.css'>
+
+  <!-- Libraries -->
+  <script src='libraries/jquery-3.1.0.js'></script>
+  <script src='libraries/jquery-mobile-1.4.5.js'></script>
+  <script src='libraries/jquery-ui.js'></script>
+
+  <!-- Plugins -->
+  <script src='plugins/jquery.delay.js'></script>
+
+  <!-- The Preload System -->
+  <script type='text/javascript' src='system/preload/animations.js'></script>
+  <script type='text/javascript' src='system/preload/images.js'></script>
+  <script type='text/javascript' src='system/preload/sounds.js'></script>
+  <script type='text/javascript' src='system/preload/voices.js'></script>
+  
+  <!-- The Task System -->  
+  <script type='text/javascript' src='system/task/COLTask.js'></script>
+  <script type='text/javascript' src='system/task/SHATask.js'></script>
+  <script type='text/javascript' src='system/task/ANITask.js'></script>
+  <script type='text/javascript' src='system/task/INSTask.js'></script>
+
+  <!-- The Game System -->
+  <script type='text/javascript' src='system/animations.js'></script>
+  <script type='text/javascript' src='system/exits.js'></script>
+  <script type='text/javascript' src='system/check.js'></script>
+  <script type='text/javascript' src='system/intro.js'></script>
+  <script type='text/javascript' src='system/menu.js'></script>
+  <script type='text/javascript' src='system/player.js'></script>
+  <script type='text/javascript' src='system/replay.js'></script>
+  <script type='text/javascript' src='system/reset.js'></script>
+  <script type='text/javascript' src='system/settings.js'></script>
+  <script type='text/javascript' src='system/startup.js'></script>
+  
+ </head>
+ 
+ <body>
+
+  <!-- SETTINGS --> 
+  <div id='EDAGAMESettingsCover'>
+   <div id='EDAGAMESettings'>
+   
+    <span class='EDAGAMEArticleTitle'>Nastavení</span>
+	
+    <hr />
+	
+	<!-- The Regime Of The Game -->
+	Režim hry:<br />
+	<div class='EDAGAMEArticleParagraph'>
+	
+	 <form name='EDAGAMESettingsForm1'>
+	 
+	  <input type='radio' 
+			 name='EDAGAMERegime'
+			 value='Move And Bounce'
+			 onClick="EDAGAMEMakeItVisible();
+					  if (document.getElementById('EDAGAMERepeat').src != EDAGAMEImagesOther[7].src) {return;}
+					  else {EDAGAMEEngineRefresh();};" checked>Move And Bounce (pro počítače, notebooky)<br />
+					  
+	  <input type='radio' 
+			 name='EDAGAMERegime'
+			 value='No Movement'
+			 onClick="EDAGAMEMakeItTransparent();
+					  if (document.getElementById('EDAGAMERepeat').src != EDAGAMEImagesOther[7].src) {return;}
+					  else {EDAGAMEEngineRefresh();};">No Movement (pro tablety, mobily)<br />
+					  
+	 </form>
+	 
+	</div>
+	<!-- /The Regime Of The Game -->
+	
+	<!-- The Speed Of Objects -->
+	<div id='EDAGAMESpeedOfObjectsCover'>
+	
+	Rychlost objektů:<br />
+	 <div class='EDAGAMEArticleParagraph'>
+
+	  <span class='EDAGAMEInputRangeCover'>
+	  
+	   <input type='range'
+			  id='EDAGAMESpeedOfObjects'
+			  step='1'
+			  max='50'
+			  min='1'
+			  value='1'
+			  onMouseMove='EDAGAMESpeedOfObjectsOnMouseMove();'>
+			  
+	   <span id='EDAGAMEHighSpeedLevel' class='EDAGAMESpeedLevel'>Vysoká</span>
+	   <span id='EDAGAMELowSpeedLevel' class='EDAGAMESpeedLevel'>Nízká</span>
+	   
+	  </span>
+	  
+	  <span class='EDAGAMESpeedPointer'>1 pixel / <span id='EDAGAMESpeedOfObjectsValue'>1</span> milisekund<span id='EDAGAMEFinalLetter'>a</span></span><br />
+	 
+	 </div>
+	 
+	</div>
+	<!-- /The Speed Of Objects -->
+	
+   </div>
+  </div>
+  <!-- /SETTINGS -->
+
+  <!-- THE RIGHT MENU -->   
+  <div id='EDAGAMEMenu3'>
+  
+  <div id='EDAGAMEMenu3Background'></div>
+  
+   <div id='EDAGAMEMenu2'>
+    <div id='EDAGAMEMenu1'>
+
+	 <!-- The Game Logo -->
+     <img id='EDAGAMELogo1' 
+          src='images/other/Logo.png'
+          alt='Logo' />
+	  
+	 <!-- THE EDA SECTION -->
+     <div id='EDAGAMEEdaCover'>
+
+	  <!-- The Eda Character -->
+      <img id='EDAGAMEEda'
+           src='animations/cyclic/Eda.gif'
+           alt='Eda' />
+
+	  <!-- The Blue Repeat Button -->
+      <img id='EDAGAMERepeat'
+           src='images/other/Transparent.png'
+           alt='Opakovat zadání hry'
+           title='Opakovat zadání hry'
+           onClick='EDAGAMERepeatMainTask();' 
+           onMouseOver='EDAGAMEVoiceInfoRepeatMainTaskPlay();' />
+
+	  <!-- The Orange Repeat Button -->
+      <img id='EDAGAMERepeat2' 
+           src='images/other/Transparent.png'
+           alt='Opakovat zadání úkolu'
+           title='Opakovat zadání úkolu'
+           onClick='EDAGAMERepeatTask();' 
+           onMouseOver='EDAGAMEVoiceInfoRepeatTaskPlay();' />
+
+	  <!-- The Speaker Icon -->
+      <img id='EDAGAMESpeaker'
+           src='images/other/Transparent.png'
+           alt='Právě se přehrává zvuková nahrávka' />
+
+	  <!-- The Note Icon -->
+      <img id='EDAGAMENote'
+           src='images/other/Transparent.png'
+           alt='Právě se přehrává zvuk hudebního nástroje' />
+
+     </div>
+	 <!-- /THE EDA SECTION -->
+
+	 <!--THE TASK AND SCORE SECTION -->
+     <div id='EDAGAMETask'>
+
+	  <!-- The Point -->
+      <img id='EDAGAMEPoint'
+           src='images/other/Transparent.png'
+           alt='Úkol'
+		   title='Úkol'
+           onMouseOver='EDAGAMEVoiceInfoTaskPlay();' />
+
+	  <!-- The Score -->
+      <span id='EDAGAMEScorePanel'>	  
+       <span id='EDAGAMEScore'>0</span>	   
+        <span> / </span>		
+       <span id='EDAGAMEScoreFinal'>10</span>	   
+      </span>
+
+	  <!-- Stars -->
+      <div id='EDAGAMEScoreIMG'>
+
+   <img id='EDAGAMEStar1' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='První hvězdička' /><!--
+--><img id='EDAGAMEStar2' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Druhá hvězdička' /><!--
+--><img id='EDAGAMEStar3' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Třetí hvězdička' /><!--
+--><img id='EDAGAMEStar4' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Čtvrtá hvězdička' /><!--
+--><img id='EDAGAMEStar5' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Pátá hvězdička' /><!--
+--><img id='EDAGAMEStar6' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Šestá hvězdička' /><!--
+--><img id='EDAGAMEStar7' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Sedmá hvězdička' /><!--
+--><img id='EDAGAMEStar8' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Osmá hvězdička' /><!--
+--><img id='EDAGAMEStar9' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Devátá hvězdička' /><!--
+--><img id='EDAGAMEStar10' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Desátá hvězdička' /><!--
+--><img id='EDAGAMEStar11' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Jedenáctá hvězdička' /><!--
+--><img id='EDAGAMEStar12' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Dvanáctá hvězdička' /><!--
+--><img id='EDAGAMEStar13' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Třináctá hvězdička' /><!--
+--><img id='EDAGAMEStar14' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Čtrnáctá hvězdička' /><!--
+--><img id='EDAGAMEStar15' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Patnáctá hvězdička' /><!--
+--><img id='EDAGAMEStar16' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Šestnáctá hvězdička' /><!--
+--><img id='EDAGAMEStar17' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Sedmnáctá hvězdička' /><!--
+--><img id='EDAGAMEStar18' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Osmnáctá hvězdička' /><!--
+--><img id='EDAGAMEStar19' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Devatenáctá hvězdička' /><!--
+--><img id='EDAGAMEStar20' class='EDAGAMEStar' src='images/other/EmptyStar.png' alt='Dvacátá hvězdička' />
+
+      </div>
+
+     </div>
+	 <!-- /THE TASK AND SCORE SECTION -->
+
+	 <!-- THE MAIN MENU SECTION -->
+     <ul class='EDAGAMEMenu1'>
+
+      <li id='EDAGAMELi1' class='EDAGAMEMenu1' title='Spustit hru BARVY'>
+	   <span onMouseOver='EDAGAMEVoiceInfoCOLPlay();'></span>
+       <a id='EDAGAMEA1' href='#'>Barvy
+        <img class='EDAGAMEMenuIcon' src='images/colors/Blue.png' alt='Ikonka minihry BARVY' />
+       </a>
+      </li>
+
+      <li id='EDAGAMELi2' class='EDAGAMEMenu1' title='Spustit hru TVARY'>
+	   <span onMouseOver='EDAGAMEVoiceInfoSHAPlay();'></span>
+       <a id='EDAGAMEA2' href='#'>Tvary
+        <img class='EDAGAMEMenuIcon' src='images/shapes/Sun.png' alt='Ikonka minihry TVARY' />
+       </a>
+      </li>
+
+      <li id='EDAGAMELi3' class='EDAGAMEMenu1' title='Spustit hru ZVÍŘÁTKA'>
+	   <span onMouseOver='EDAGAMEVoiceInfoANIPlay();'></span>
+	   <a id='EDAGAMEA3' href='#'>Zvířátka
+        <img class='EDAGAMEMenuIcon' src='images/animals/Dog.png' alt='Ikonka minihry ZVÍŘÁTKA' />
+       </a>
+      </li>
+
+      <li id='EDAGAMELi4' class='EDAGAMEMenu1' title='Spustit hru NASTROJE'>
+	   <span onMouseOver='EDAGAMEVoiceInfoINSPlay();'></span>
+	   <a id='EDAGAMEA4' href='#'>Nástroje
+        <img class='EDAGAMEMenuIcon' src='images/instruments/Guitar.png' alt='Ikonka minihry NÁSTROJE' />
+       </a>
+      </li>
+
+      <li id='EDAGAMELi5' class='EDAGAMEMenu1' title='Spustit hru DVOJICE'>
+	   <span onMouseOver='EDAGAMEVoiceInfoPAIPlay();'></span>
+	   <a id='EDAGAMEA5' href='#'>Dvojice
+        <img class='EDAGAMEMenuIcon' src='images/pairs/Shapes.png' alt='Ikonka minihry DVOJICE' />
+       </a>
+      </li>
+
+     </ul>
+	 <!-- /THE MAIN MENU SECTION -->
+	 
+	 <!-- Settings -->
+	 <img id='EDAGAMESettingsIcon'
+          src='images/other/Settings.png'
+          alt='Nastavení'
+		  title='Nastavení'
+		  onClick="$('#EDAGAMESettings').slideToggle(500);"
+          onMouseOver='' />
+
+    </div>
+   </div>
+  </div>
+  <!-- /THE RIGHT MENU -->
+
+  <!-- OBJECTS -->
+  <div id='EDAGAMEObjects'>
+
+   <img id='EDAGAMEObject0'
+		class='EDAGAMEObject'
+		onClick='EDAGAMECheck(0);'
+		onMouseOver='EDAGAMESlowDown(); EDAGAMEVoiceInfoObject0Play();'
+		onMouseOut="EDAGAMEDefaultSpeed();"
+		src='images/other/Transparent.png'
+		alt='První objekt' />
+		
+   <img id='EDAGAMEObject1'
+		class='EDAGAMEObject'
+		onClick='EDAGAMECheck(1);'
+		onMouseOver='EDAGAMESlowDown(); EDAGAMEVoiceInfoObject1Play();'
+		onMouseOut="EDAGAMEDefaultSpeed();"
+		src='images/other/Transparent.png'
+		alt='Druhý objekt' />
+		
+   <img id='EDAGAMEObject2'
+		class='EDAGAMEObject'
+		onClick='EDAGAMECheck(2);'
+		onMouseOver='EDAGAMESlowDown(); EDAGAMEVoiceInfoObject2Play();'
+		onMouseOut="EDAGAMEDefaultSpeed();"
+		src='images/other/Transparent.png'
+		alt='Třetí objekt' />
+		
+   <img id='EDAGAMEObject3'
+		class='EDAGAMEObject'
+		onClick='EDAGAMECheck(3);'
+		onMouseOver='EDAGAMESlowDown(); EDAGAMEVoiceInfoObject3Play();'
+		onMouseOut="EDAGAMEDefaultSpeed();"
+		src='images/other/Transparent.png'
+		alt='Čtvrtý objekt' />
+		
+   <img id='EDAGAMEObject4'
+		class='EDAGAMEObject'
+		onClick='EDAGAMECheck(4);'
+		onMouseOver='EDAGAMESlowDown(); EDAGAMEVoiceInfoObject4Play();'
+		onMouseOut="EDAGAMEDefaultSpeed();"
+		src='images/other/Transparent.png'
+		alt='Pátý objekt' />
+		
+   <img id='EDAGAMEObject5'
+		class='EDAGAMEObject'
+		onClick='EDAGAMECheck(5);'
+		onMouseOver='EDAGAMESlowDown(); EDAGAMEVoiceInfoObject5Play();'
+		onMouseOut="EDAGAMEDefaultSpeed();"
+		src='images/other/Transparent.png'
+		alt='Šestý objekt' />
+		
+   <!-- The Engine System -->
+   <script type='text/javascript' src='system/engine/collisions.js'></script>
+   <script type='text/javascript' src='system/engine/engine.js'></script>
+   
+   <!-- The Control System --> 
+   <script type='text/javascript' src='system/check/COLCheck.js'></script>
+   <script type='text/javascript' src='system/check/SHACheck.js'></script>
+   <script type='text/javascript' src='system/check/ANICheck.js'></script>
+   <script type='text/javascript' src='system/check/INSCheck.js'></script>
+   <script type='text/javascript' src='system/check/PAICheck.js'></script>
+
+  </div>
+  <!-- /OBJECTS -->
+
+  <!-- THE INTRODUCTION -->
+  <div id='EDAGAMEBackground'>
+   <div id='EDAGAMECover'>
+    <div id='EDAGAMEReflector'>
+	
+     <img id='EDAGAMEIntroEda'
+		  src='animations/cyclic/Eda.gif'
+		  alt='Eda' />
+		  
+     <div id='EDAGAMEIntro'>
+	 
+      <img id='EDAGAMELogo2'
+		   src='images/other/Logo.png'
+		   alt='Logo' />
+		   
+      <span id='EDAGAMETitle'>Webová hra pro děti</span>
+		   
+     </div>
+	 
+	 <img id='EDAGAMEHands'
+		  src='images/other/Hands.png'
+		  alt='Edovy ruce' />
+	 
+    </div>
+	
+    <div id='EDAGAMESkip' title='Přeskočit' onClick='EDAGAMESkip();' onMouseOver='EDAGAMEVoiceInfoSkipPlay();'></div>
+	
+   </div>
+  </div>
+  <!-- /THE INTRODUCTION -->
+  
+  <!-- THE AREA -->
+  <div id='EDAGAMEArea'>
+
+   <!-- The Checker -->
+   <img id='EDAGAMEChecker' src='images/other/Transparent.png' alt='Fajfka/Křížek' />
+
+   <!-- THE CONGRATULATION -->
+   <div id='EDAGAMECongratulation' class='EDAGAMEArticle'>
+
+    <img id='EDAGAMEExit1' 
+         src='images/other/Exit.png'
+         alt='Konec'
+         title='Konec'
+         onClick='EDAGAMEExiting1();'
+         onMouseOver="$('#EDAGAMEExit1').attr({src: 'images/other/No.png'}); EDAGAMEVoiceInfoExitPlay();"
+         onMouseOut="$('#EDAGAMEExit1').attr({src: 'images/other/Exit.png'});" />
+
+    <div class='EDAGAMETop'>
+
+     <span class='EDAGAMECongrats1'>Vyhrál/a jsi!</span>
+
+     <img id='EDAGAMEWinner'
+          src='images/other/Winner.png'
+          alt='Výhra' />
+		  
+    </div>
+
+    <hr />
+
+    <div class='EDAGAMEDown'>
+
+      <span class='EDAGAMECongrats2'>Hrát znovu?</span>
+
+      <img id='EDAGAMERepeatIMG'
+           src='images/other/Repeat.png'
+           alt='Opakovat'
+           title='Opakovat'
+           onClick='EDAGAMERepeatTheGame();'
+           onMouseOver='EDAGAMEVoiceInfoRepeatPlay();' />
+
+      <span>Ano</span>
+
+    </div>
+   </div>
+   <!-- /THE CONGRATULATION -->
+
+   <!-- PAIRS -->
+   <div id='EDAGAMEPairs' class='EDAGAMEArticle'>
+
+    <img id='EDAGAMEExit2'
+         src='images/other/Exit.png'
+         alt='Konec'
+         title='Konec'
+         onClick='EDAGAMEExiting2();' 
+         onMouseOver="$('#EDAGAMEExit2').attr({src: 'images/other/No.png'}); EDAGAMEVoiceInfoExitPlay();"
+         onMouseOut="$('#EDAGAMEExit2').attr({src: 'images/other/Exit.png'});" />
+
+    <span class='EDAGAMEArticleTitle'>Zvolte sadu:</span>
+
+    <hr />
+  
+    <div id='EDAGAMEPaiMenu'>
+     <div id='EDAGAMEFigure1' class='EDAGAMEFigure' onClick='EDAGAMEPaiColors();'>
+
+	  <span class='EDAGAMEBecauseOfTheInformationSound' onMouseOver='EDAGAMEVoiceInfoCOLPlay();'></span>
+	  <img src='images/pairs/Colors.png'
+           class='EDAGAMEPaiIcon'
+           alt='Sada barev'
+           title='Sada barev' />
+		   
+	  <span class='EDAGAMEPai'>BARVY</span>
+	  
+     </div>
+
+     <div id='EDAGAMEFigure2' class='EDAGAMEFigure' onClick='EDAGAMEPaiShapes();'>
+
+	  <span class='EDAGAMEBecauseOfTheInformationSound' onMouseOver='EDAGAMEVoiceInfoSHAPlay();'></span>
+      <img src='images/pairs/Shapes.png'
+           class='EDAGAMEPaiIcon'
+           alt='Sada tvarů'
+           title='Sada tvarů' />
+
+      <span class='EDAGAMEPai'>TVARY</span>
+	  
+     </div>
+
+     <div id='EDAGAMEFigure3' class='EDAGAMEFigure' onClick='EDAGAMEPaiAnimals();'>
+
+	  <span class='EDAGAMEBecauseOfTheInformationSound' onMouseOver='EDAGAMEVoiceInfoANIPlay();'></span>
+	  <img src='images/pairs/Animals.png'
+           class='EDAGAMEPaiIcon'
+           alt='Sada zvířátek'
+           title='Sada zvířátek' />
+
+      <span class='EDAGAMEPai'>ZVÍŘÁTKA</span>
+	  
+     </div>
+
+     <div id='EDAGAMEFigure4' class='EDAGAMEFigure' onClick='EDAGAMEPaiInstruments();'>
+
+	  <span class='EDAGAMEBecauseOfTheInformationSound' onMouseOver='EDAGAMEVoiceInfoINSPlay();'></span> 
+      <img src='images/pairs/Instruments.png'
+           class='EDAGAMEPaiIcon'
+           alt='Sada hudebních nástrojů'
+           title='Sada hudebních nástrojů' />
+
+      <span class='EDAGAMEPai'>NÁSTROJE</span>
+
+     </div>
+    </div>
+   </div>
+   <!-- /PAIRS -->
+
+   <!-- THE ARTICLE 'O hře' -->
+   <div id='EDAGAMEAboutTheGame' class='EDAGAMEArticle'>
+
+    <img id='EDAGAMEExitAboutTheGame' 
+         src='images/other/Exit.png'
+         alt='Zavřít'
+         title='Zavřít'
+         onClick='EDAGAMEExiting3();'
+         onMouseOver="$('#EDAGAMEExitAboutTheGame').attr({src: 'images/other/No.png'});"
+         onMouseOut="$('#EDAGAMEExitAboutTheGame').attr({src: 'images/other/Exit.png'});" />
+
+    <span class='EDAGAMEArticleTitle'>O hře</span>
+
+    <hr />
+	 
+	<span class='EDAGAMEArticleCaption'>Základní informace</span><br />
+	 
+	<div class='EDAGAMEArticleParagraph'>
+	 
+	 <img id='EDAGAMEImageLogo'
+		  class='EDAGAMEArticleBlockImage'
+		  src='images/other/Logo.png'
+          alt='Logo'
+          title='Logo' />
+	 	 
+	 <span class='EDAGAMEArticleInformation'>Název:</span> © Eda - Webová hra pro děti<br />
+	 <span class='EDAGAMEArticleInformation'>Verze:</span> 1.0 Stable (28. 9. 2016)<br />
+	 <span class='EDAGAMEArticleInformation'>Žánr:</span> Výukový<br />
+	 <span class='EDAGAMEArticleInformation'>Věkové omezení:</span> 3+<br />
+	 <span class='EDAGAMEArticleInformation'>Mód:</span> Singleplayer<br />
+	 <span class='EDAGAMEArticleInformation'>Zobrazení:</span> 2D<br />
+	 <span class='EDAGAMEArticleInformation'>Popisek:</span> Webová hra Eda je zábavní a výukový nástroj pro děti v předškolním a mladším školním věku (3 - 12 let). Obsahuje pět miniher, ve kterých si děti osvojí a procvičí základní dovednosti, jako např. poslech a porozumění zadání, logické uvažování, rozlišování obrázků a další. Po celou dobu děti provází maskot hry Eda, miniaturní, animovaná a přátelská postavička, která zadává úkoly a vysvětluje principy jednotlivých miniher.<br />
+	 <span class='EDAGAMEArticleInformation'>Odborná práce:</span> <a class='EDAGAMETheOfficialWork' href='TheOfficialWork.pdf' target='_blank'>zde</a> (popis ALFA verze hry)<br />
+	   
+	</div>
+	 
+	<span class='EDAGAMEArticleCaption'>Věková způsobilost</span><br />
+
+	<div class='EDAGAMEArticleParagraph'>
+	 Webová hra byla otestována dvěma dětmi ve věku 2 a půl roku a 7 let. Z testování vzešly následující poznatky:
+	  
+	 <ul class='EDAGAMEArticle'>
+	  <li>Děti ve věku 3 až 4 roky by měly být doprovázeny starší osobou.</li>
+	  <li>Mladším dětem (3 - 6 let) doporučujeme hru přehrávat na dotykovém zařízení (např. tabletu).</li>
+	  <li>Starší děti (7 - 12 let) jsou schopné používat počítačovou myš, tudíž mohou hru hrát i na počítačích či noteboocích.</li>
+	 </ul>
+	  
+	</div>
+	  
+	<span class='EDAGAMEArticleCaption'>Kompatibilita</span><br />
+	 
+	<div class='EDAGAMEArticleParagraph'>
+	 <span class='EDAGAMEBrowsers'>
+	  
+	  <span class='EDAGAMEBrowserColumn'>
+	   <img id='EDAGAMEImageIE'
+		    class='EDAGAMEArticleInlineImage'
+		    src='images/website/IE.png'
+            alt='Internet Explorer'
+            title='Internet Explorer' />
+	   <span class='EDAGAMEBrowserVersion'>11.0<br />a vyšší</span>
+	  </span>
+
+	  <span class='EDAGAMEBrowserColumn'>	   
+	   <img id='EDAGAMEImageGCH'
+		    class='EDAGAMEArticleInlineImage'
+		    src='images/website/GCH.png'
+            alt='Google Chrome'
+            title='Google Chrome' />
+	   <span class='EDAGAMEBrowserVersion'>52.0<br />a vyšší</span>
+	  </span>
+
+	  <span class='EDAGAMEBrowserColumn'>		   
+	   <img id='EDAGAMEImageMF'
+		    class='EDAGAMEArticleInlineImage'
+		    src='images/website/MF.png'
+            alt='Mozilla Firefox'
+            title='Mozilla Firefox' />
+	   <span class='EDAGAMEBrowserVersion'>47.0<br />a vyšší</span>
+	  </span>
+
+	  <span class='EDAGAMEBrowserColumn'>				
+	   <img id='EDAGAMEImageO'
+		    class='EDAGAMEArticleInlineImage'
+		    src='images/website/O.png'
+            alt='Opera'
+            title='Opera' />
+	   <span class='EDAGAMEBrowserVersion'>39.0<br />a vyšší</span>
+	  </span>
+
+	  <span class='EDAGAMEBrowserColumn'>				
+	   <img id='EDAGAMEImageS'
+		    class='EDAGAMEArticleInlineImage'
+		    src='images/website/S.png'
+            alt='Safari'
+            title='Safari' />
+	   <span class='EDAGAMEBrowserVersion'>9.0<br />a vyšší</span>
+	  </span>
+			
+	 </span>
+		  
+	 <img id='EDAGAMEImageTablet'
+		  class='EDAGAMEArticleBlockImage'
+		  src='images/website/Tablet.png'
+          alt='Tablety'
+          title='Tablety' />
+	 <span class='EDAGAMEBrowserVersion'>Zcela kompatibilní</span>
+   
+	 <img id='EDAGAMEImageMobile'
+		  class='EDAGAMEArticleBlockImage'
+		  src='images/website/Mobile.png'
+          alt='Mobilní telefony'
+          title='Mobilní telefony' />
+	 <span class='EDAGAMEBrowserVersion'>Zcela nekompatibilní</span>
+	  
+	 <ul class='EDAGAMEArticle' style='margin: 0;'>
+	  <li>hra byla vyvíjena na prohlížeči Google Chrome, tudíž je s tímto prohlížečem nejvíce kompatibilní</li>
+	  <li>prohlížeč může mít problém s prvním načtením hry, jelikož se při tom hromadně načítají všechny obrázky, animace a zvukové nahrávky do mezipaměti prohlížeče</li>
+	  <li>při používání starších verzí uvedených webových prohlížečů se mohou vyskytnout drobné odlišnosti v grafickém zobrazení</li>
+	  <li>hra není uzpůsobena malorozměrovým zařízením (např. mobilní telefony), hraní na těchto zařízeních může být obtížné</li>
+	 </ul>
+	   
+	</div>
+	 
+	<span class='EDAGAMEArticleCaption'>Zajímavosti</span><br />
+
+	 <div class='EDAGAMEArticleParagraph'>
+	 
+	  <ul class='EDAGAMEArticle' style='margin: 0;'>
+	   <li>Eda byl původně zamýšlen jako webová hra pro zrakově postižené. Později se od tohoto plánu ustoupilo. I přesto si současnou verzi hry mohou zahrát i děti s očními vadami (s výjimkou úplné slepoty). Umožňuje to především ozvučení hry a velké množství grafických prvků.</li>
+	   <li>Celý herní kód zabírá celkem 11 159 řádků.</li>
+	   <li>Nahrávání zvukových nahrávek byla jedna z nejnáročnějších částí celého vývoje. Mnohokrát jsem se svými nahrávkami nebyl spokojen a musel jsem je opakovat. Např. nahrávku hlavní řeči Edy v intru v ALFA verzi hry jsem opakoval celkem 42x, než se konečně povedla. Avšak pozdější nahrávka, která se nachází v současné verzi hry, překonala hranici celkem 50 opakování!</li>
+	   <li>Na hře se pracovalo vcelku 9 měsíců s častými přestávkami.</li>
+	   <li>Původní námět na hru spočíval v chytání různých smajlíků. Tento nápad se zčásti dochoval i do současné verze hry. Např. všechna zvířátka a Eda v sobě ukrývají typické rysy smajlíků - kulaté obličeje, oči a úsměv.</li>
+
+	  </ul>
+	  
+	 </div>	  
+	
+   </div> 
+   <!-- /THE ARTICLE 'O hře' -->   
+   
+   <!-- THE ARTICLE 'Autoři' --> 
+   <div id='EDAGAMEAutors' class='EDAGAMEArticle'>
+
+    <img id='EDAGAMEExitAutors' 
+         src='images/other/Exit.png'
+         alt='Zavřít'
+         title='Zavřít'
+         onClick='EDAGAMEExiting3();'
+         onMouseOver="$('#EDAGAMEExitAutors').attr({src: 'images/other/No.png'});"
+         onMouseOut="$('#EDAGAMEExitAutors').attr({src: 'images/other/Exit.png'});" />
+
+    <span class='EDAGAMEArticleTitle'>Autoři</span>
+
+    <hr />
+	 	 
+	<span class='EDAGAMEArticleCaption'>Karel Vrabec</span><br />
+	 
+	<div class='EDAGAMEArticleParagraph'>
+	 <span class='EDAGAMEArticleInformation'>Škola:</span> Gymnázium Kladno<br />
+	 <span class='EDAGAMEArticleInformation'>Programovací jazyky:</span> JavaScript (+ jQuery), Pascal, HTML + CSS<br />
+	 <span class='EDAGAMEArticleInformation'>Funkce:</span> Vývoj, nápad, návrh, tvorba obrázků, animací, zvukových nahrávek, zvuků a testování<br />
+	 <span class='EDAGAMEArticleInformation'>Programování mě baví:</span> Od roku 2011<br />
+	 <span class='EDAGAMEArticleInformation'>Kontakt:</span> karelvrabeckv@gmail.com<br />
+	</div> 
+	 
+	<span class='EDAGAMEArticleCaption'>Slávka Vítečková</span><br />
+	  
+	<div class='EDAGAMEArticleParagraph'> 
+	 <span class='EDAGAMEArticleInformation'>Škola:</span> ČVUT v Praze, Fakulta biomedicínského inženýrství<br />
+	 <span class='EDAGAMEArticleInformation'>Funkce:</span> Hlavní tutor, odborná pomoc a testování<br />
+	</div>
+	 
+	<hr />
+	 
+	<span class='EDAGAMEArticleCaption'>Poděkování</span><br />
+	 
+	<div class='EDAGAMEArticleParagraph'>
+	 <span class='EDAGAMEArticleHighlight'>Jaroslavě K.</span> (tutor, přihlašování do soutěží)<br />
+	 <span class='EDAGAMEArticleHighlight'>Lucii P.</span> (odborný posudek)<br />
+	 <span class='EDAGAMEArticleHighlight'>Viktorce V.</span> (testování horní hranice předškolního věku)<br />
+	 <span class='EDAGAMEArticleHighlight'>Sofince O' B.</span> (testování spodní hranice předškolního věku)<br />
+	 <span class='EDAGAMEArticleHighlight'>ZŠ Charlotty Garrigue Masarykové v Lánech</span> (zapůjčení několika hudebních nástrojů pro pořízení zvukových nahrávek)<br />
+	</div><br />
+	
+	<div class='EDAGAMEArticleParagraph' style='height: 190px;'>
+	
+	 <span class='EDAGAMEThankYou'><em>...a dalším kamarádům Edy</em><br /><span class='EDAGAMEArticleIndentation'><em>za pomoc a feedbacky!</em></span></span>
+
+	 <img id='EDAGAMEThankYou'
+		  src='images/website/Thanks.png'
+		  alt='Děkuji vám'
+		  title='Děkuji vám' />
+		  
+	</div>
+   </div>
+   <!-- /THE ARTICLE 'Autoři' -->
+  
+   <!-- /THE ARTICLE 'Historie' -->
+   <div id='EDAGAMEHistory' class='EDAGAMEArticle'>
+
+    <img id='EDAGAMEExitHistory' 
+         src='images/other/Exit.png'
+         alt='Zavřít'
+         title='Zavřít'
+         onClick='EDAGAMEExiting3();'
+         onMouseOver="$('#EDAGAMEExitHistory').attr({src: 'images/other/No.png'});"
+         onMouseOut="$('#EDAGAMEExitHistory').attr({src: 'images/other/Exit.png'});" />
+		  
+	<span class='EDAGAMEArticleTitle'>Historie</span>
+
+    <hr />
+
+	<div class='EDAGAMEHistoryBorder'>
+	 
+	 <ul class='EDAGAMEArticle'>
+	  <li><span class='EDAGAMEArticleHighlight'>28. 9.</span> (vydání STABILNÍ verze webové hry Eda, ukončení projektu)</li>
+	  <li><span class='EDAGAMEArticleHighlight'>28. 8.</span> (vydání BETA verze webové hry Eda)
+	  <li><span class='EDAGAMEArticleHighlight'>červenec - srpen</span> (2. fáze vývoje hry, tvorba enginu a ostatních herních součástí)</li>
+	  <li><span class='EDAGAMEArticleHighlight'>28. 6.</span> (účast v soutěži České hlavičky 2016)</li>
+	  <li><span class='EDAGAMEArticleHighlight'>17. 6.</span> (10. místo v celostátním kole 38. ročníku SOČ)</li>
+	  <li><span class='EDAGAMEArticleHighlight'>29. 4.</span> (1. místo v krajském kole 38. ročníku SOČ)</li>
+	  <li><span class='EDAGAMEArticleHighlight'>27. 3.</span> (vydání ALFA verze webové hry Eda)
+	  <li><span class='EDAGAMEArticleHighlight'>únor - březen</span> (psaní <a href='TheOfficialWork.pdf' target='_blank'>odborné práce</a> o webové hře Eda)</li>
+	 </ul>
+	  
+	 <div class='EDAGAMEArticleParagraph' style='height: 219px; text-align: right;'>
+	 
+	  <span id='EDAGAMEHistoryYear16' class='EDAGAMEArticleCaption'>2016</span>
+	  
+	  <img id='EDAGAMEHistoryMan' 
+           src='images/website/Man.png'
+           alt='Dospělý Eda'
+           title='Dospělý Eda' />
+		   
+	 </div>
+		  
+	 <ul class='EDAGAMEArticle'>
+	  <li><span class='EDAGAMEArticleHighlight'>září - březen</span> (1. fáze vývoje hry, tvorba enginu a ostatních herních součástí)</li>
+	 </ul>
+	 
+	 <div class='EDAGAMEArticleParagraph' style='height: 143px; text-align: right;'>
+	 
+	  <span id='EDAGAMEHistoryYear1516' class='EDAGAMEArticleCaption'>2015 - 2016</span>
+	  
+	  <img id='EDAGAMEHistoryYoungster' 
+           src='images/website/Youngster.png'
+           alt='Mladý Eda'
+           title='Mladý Eda' />
+		   
+	 </div>
+		  
+	 <ul class='EDAGAMEArticle'>
+	  <li><span class='EDAGAMEArticleHighlight'>červenec - srpen</span> (promýšlení nápadu, návrhu a fungování hry)</li>
+	  <li><span class='EDAGAMEArticleHighlight'>duben - srpen</span> (studium JavaScriptu a jQuery)</li>
+	  <li><span class='EDAGAMEArticleHighlight'>18. 3.</span> (první schůzka s hlavním tutorem, seznámení s tématem)</li>
+	  <li><span class='EDAGAMEArticleHighlight'>únor</span> (zvolení tématu 'Webová hra pro děti' z nabídky SOČ)</li>
+	 </ul>
+	
+	 <div class='EDAGAMEArticleParagraph' style='height: 126px; text-align: right;'>
+	 
+	  <span id='EDAGAMEHistoryYear15' class='EDAGAMEArticleCaption'>2015</span>
+	  
+	  <img id='EDAGAMEHistoryBaby' 
+           src='images/website/Baby.png'
+           alt='Maličký Eda'
+           title='Maličký Eda' />
+		   
+	 </div>
+	  
+	</div>
+   </div>
+   <!-- /THE ARTICLE 'Historie' -->
+	
+   <!-- /THE ARTICLE 'Napište nám' -->
+   <div id='EDAGAMEWriteUs' class='EDAGAMEArticle'>
+
+    <img id='EDAGAMEExitWriteUs' 
+         src='images/other/Exit.png'
+         alt='Zavřít'
+         title='Zavřít'
+         onClick='EDAGAMEExiting3();'
+         onMouseOver="$('#EDAGAMEExitWriteUs').attr({src: 'images/other/No.png'});"
+         onMouseOut="$('#EDAGAMEExitWriteUs').attr({src: 'images/other/Exit.png'});" />
+
+    <span class='EDAGAMEArticleTitle'>Napište nám</span>
+
+    <hr />
+	 
+	<div class='EDAGAMEArticleParagraph'>Pokud jste si již Edu zahráli, nebojte se s námi podělit o vaše názory a zážitky:</div>
+	 <div class='EDAGAMEArticleParagraph'>
+	  <link type="text/css" rel="stylesheet" href="https://www.brolmo.com/index.php?controller=AppGB&action=css&cid=29140&skin=4" />
+	  <script type="text/javascript" src="https://www.brolmo.com/index.php?controller=AppGB&action=load&hash=3488c99a1073142b727e2bb48d2191442f13b4bb&aid=29579&cid=29140&locale=1"></script>
+	  <a id="BrolmoGBook_29140" href="http://www.brolmo.com/" target="_blank" title="Free Guest Book by Brolmo.com">Free Guest Book by Brolmo.com</a>
+	 </div>  
+
+   </div>
+   <!-- /THE ARTICLE 'Napište nám' -->
+  
+  </div>
+  <!-- /THE AREA -->
+ 
+  <!-- THE WEBSITE --> 
+  <div id='EDAGAMEWebsite'>  
+   <div id='EDAGAMEPaiChecker'>
+    <div id='EDAGAMEPaiKit'>
+	
+     <div id='EDAGAMEPaiKitInside'>
+	 
+      <img id='EDAGAMEExit3'
+           src='images/other/Exit.png'
+           alt='Odstranit'
+           title='Odstranit'
+           onClick='EDAGAMEExiting4();' 
+           onMouseOver="$('#EDAGAMEExit3').attr({src: 'images/other/No.png'}); EDAGAMEVoiceInfoClearPlay();"
+           onMouseOut="$('#EDAGAMEExit3').attr({src: 'images/other/Exit.png'});" />
+
+   <img id='EDAGAMEPairsLeft' src='images/other/Transparent.png' alt='Levý obrázek' /><!--
+--><img id='EDAGAMEPairsRight' src='images/other/Transparent.png' alt='Pravý obrázek' />
+
+     </div>
+    </div>
+   
+    <!-- The Pairs Kit -->
+    <div id='EDAGAMECatch'>
+     <img id='EDAGAMECatch1' class='EDAGAMECatch' src='images/other/Transparent.png' alt='První chycená dvojice' />
+     <img id='EDAGAMECatch2' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Druhá chycená dvojice' />
+     <img id='EDAGAMECatch3' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Třetí chycená dvojice' />
+     <img id='EDAGAMECatch4' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Čtvrtá chycená dvojice' />
+     <img id='EDAGAMECatch5' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Pátá chycená dvojice' />
+     <img id='EDAGAMECatch6' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Šestá chycená dvojice' />
+     <img id='EDAGAMECatch7' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Sedmá chycená dvojice' />
+     <img id='EDAGAMECatch8' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Osmá chycená dvojice' />
+     <img id='EDAGAMECatch9' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Devátá chycená dvojice' />
+     <img id='EDAGAMECatch10' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Desátá chycená dvojice' />
+     <img id='EDAGAMECatch11' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Jedenáctá chycená dvojice' />
+     <img id='EDAGAMECatch12' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Dvanáctá chycená dvojice' />
+     <img id='EDAGAMECatch13' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Třináctá chycená dvojice' />
+     <img id='EDAGAMECatch14' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Čtrnáctá chycená dvojice' />
+     <img id='EDAGAMECatch15' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Patnáctá chycená dvojice' />
+     <img id='EDAGAMECatch16' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Šestnáctá chycená dvojice' />
+     <img id='EDAGAMECatch17' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Sedmnáctá chycená dvojice' />
+     <img id='EDAGAMECatch18' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Osmnáctá chycená dvojice' />
+     <img id='EDAGAMECatch19' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Devatenáctá chycená dvojice' />
+     <img id='EDAGAMECatch20' class='EDAGAMECatch' src='images/other/Transparent.png' alt='Dvacátá chycená dvojice' />
+    </div>
+
+   </div>
+
+   <div id='EDAGAMEMainMenu2'>
+  
+    <!-- The Logo And Informations -->
+    <div id='EDAGAMELogo3Cover'>
+	
+     <img id='EDAGAMELogo3' 
+          src='images/other/Logo.png'
+          alt='Logo' />
+		 
+     <span id='EDAGAMEInformations'>© 2015 - 2016 STABLE</span>
+	 
+    </div>
+  
+    <!-- The Website Menu -->
+    <div id='EDAGAMEMainMenu1'>
+
+     <ul class='EDAGAMEMenu2'>
+
+      <li class='EDAGAMEMenu2' title='O hře'>
+       <a id='EDAGAMEWebsiteA1' href='#'>O hře</a>
+      </li>
+	
+      <li class='EDAGAMEMenu2' title='Autoři'>
+       <a id='EDAGAMEWebsiteA2' href='#'>Autoři</a>
+      </li>
+	
+      <li class='EDAGAMEMenu2' title='Historie'>
+       <a id='EDAGAMEWebsiteA3' href='#'>Historie</a>
+      </li>
+	
+      <li class='EDAGAMEMenu2' title='Napište nám'>
+       <a id='EDAGAMEWebsiteA4' href='#'>Napište nám</a>
+      </li>
+
+     </ul>		
+
+    </div>
+   
+    <!-- The Start -->
+    <div id='EDAGAMELink' onClick='EDAGAMEStartUp();' OnMouseOver='EDAGAMEStartAnim(); EDAGAMEVoiceInfoStartPlay();' title='Zapnutí/Vypnutí hry'>
+	 <img id='EDAGAMELinkBG' src='images/other/Eda.png' alt='Zapnutí/Vypnutí hry' />
+     <span id='EDAGAMELinkSPAN'>ZAPNOUT HRU</span>
+    </div>
+   
+   </div>
+  </div>
+   <!-- /THE WEBSITE -->
+  
+  <!-- THE NUMBER -->
+   <div id='EDAGAMENumber'>0</div>
+  <!-- /THE NUMBER -->
+
+ </body>
+ 
+</html>

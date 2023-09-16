@@ -1,0 +1,1164 @@
+/********** CONTENT **********/
+
+/*
+
+1. BASIC
+2. SETTINGS
+3. RIGHT MENU
+4. EDA MENU
+5. TASK, SCORE, SETTINGS
+6. OBJECTS
+7. INTRODUCTION
+8. CHECKER, CONGRATULATION, EXITS
+9. PAIRS
+10. WEBSITE
+11. BOTTOM MENU
+12. NUMBER
+
+*/
+
+/********** 1. BASIC **********/
+
+html {
+	
+	overflow: hidden !important;
+	user-select: none !important;
+	-webkit-user-select: none !important;
+	-khtml-user-select: none !important;
+	-moz-user-select: none !important;
+	-ms-user-select: none !important;
+	-o-user-select: none !important;
+	
+}
+
+body {
+
+	font-family: Comfortaa, Open Sans, Courier New, Times, Garamond, Arial, sans-serif !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	min-width: 800px !important;
+	min-height: 800px !important;
+
+}
+
+img {
+	
+	border: 0;
+	outline: 0;
+	
+}
+
+hr {
+
+	clear: both !important;
+
+}
+
+input {
+	
+	margin: 0 10px 0 25px !important;
+	cursor: pointer;
+	
+}
+
+input[type='range'] {
+	
+	display: block !important;
+	
+}
+
+ul.EDAGAMEMenu1 {
+
+	list-style-type: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: #FFF !important;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+
+}
+
+ul.EDAGAMEMenu2 {
+
+	float: left !important;
+	padding-left: 25px !important;
+
+}
+
+ul.EDAGAMEArticle {
+
+	list-style-type: disc !important;
+
+}
+
+li.EDAGAMEMenu1 {
+
+	display: block !important;
+	border-top: 1px solid #000 !important;
+	background-color: rgb(255, 255, 255);
+	font-size: 30px !important;
+	-webkit-transition-duration: 0.5s !important;
+	-moz-transition-duration: 0.5s !important;
+	-o-transition-duration: 0.5s !important;
+	transition-duration: 0.5s !important;
+
+}
+
+li.EDAGAMEMenu1:hover {
+
+	background-color: rgb(228, 228, 228) !important;
+	-webkit-transition-duration: 0.5s !important;
+	-moz-transition-duration: 0.5s !important;
+	-o-transition-duration: 0.5s !important;
+	transition-duration: 0.5s !important;
+
+}
+
+li.EDAGAMEMenu1:first-child {
+
+	border-top: none !important;
+
+}
+
+li.EDAGAMEMenu2 {
+
+	display: inline-block !important;
+	font-family: Open Sans, sans-serif !important;
+	font-size: 28px;
+	
+}
+
+li.EDAGAMEMenu1 a {
+
+	display: block !important;
+	padding: 5px 5px 5px 8px !important;
+	text-decoration: none !important;
+	color: #000 !important;
+
+}
+
+li.EDAGAMEMenu1 span {
+
+	position: absolute !important;
+	width: 297px !important;
+	height: 47px !important;
+	cursor: pointer !important;
+}
+
+li.EDAGAMEMenu2 a {
+
+	display: block !important;
+	text-decoration: none !important;
+	color: #666 !important;
+	margin: 0 30px 0 30px !important;
+	-webkit-transition-duration: 0.5s !important;
+	-moz-transition-duration: 0.5s !important;
+	-o-transition-duration: 0.5s !important;
+	transition-duration: 0.5s !important;
+	
+}
+
+li.EDAGAMEMenu2 a:hover {
+
+	color: #000 !important;
+	-webkit-transition-duration: 0.5s !important;
+	-moz-transition-duration: 0.5s !important;
+	-o-transition-duration: 0.5s !important;
+	transition-duration: 0.5s !important;
+	
+}
+
+img.EDAGAMEMenuIcon {
+
+	float: right;
+	width: 37px;
+	height: 37px;
+
+}
+
+.EDAGAMECurrent {
+
+	background: #E2E2E2 !important;
+	-webkit-transition-duration: 0.5s !important;
+	-moz-transition-duration: 0.5s !important;
+	-o-transition-duration: 0.5s !important;
+	transition-duration: 0.5s !important;
+
+}
+
+/********** 2. SETTINGS **********/
+
+div#EDAGAMESettingsCover {
+	
+	position: absolute;
+	top: 0;
+	width: 100%;
+	
+}
+
+div#EDAGAMESettings {
+
+	position: relative;
+	z-index: 3;
+	display: none;
+	width: 500px;
+	border: 2px solid #999 !important;
+	border-top: none !important;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin: 0 auto;
+	padding: 20px;
+	font-family: Open Sans, 'sans-serif';
+	border: 2px solid #333;
+	background: #FFF;
+	cursor: default;
+	
+}
+
+div#EDAGAMESpeedOfObjectsCover {
+
+	overflow: hidden;
+	
+}
+
+span.EDAGAMEInputRangeCover {
+	
+	float: left;
+	
+}
+
+span#EDAGAMEHighSpeedLevel {
+
+	float: left;
+	margin-left: 10px;
+	
+}
+
+span#EDAGAMELowSpeedLevel {
+
+	float: right;
+	
+}
+
+span.EDAGAMESpeedLevel {
+
+	position: relative;
+	font-size: 12px;
+	
+}
+
+span.EDAGAMESpeedPointer {
+	
+	position: relative;
+	left: 30px;
+	
+}
+
+/********** 3. RIGHT MENU **********/
+
+div#EDAGAMEMenu3 {
+
+	position: absolute;
+	top: -60px;
+	right: 0;
+	display: none;
+	width: 300px;
+	height: 100%;
+	background: #FFF7B9;
+	border-left: 3px solid #777;
+	box-sizing: border-box;
+
+}
+
+div#EDAGAMEMenu3Background {
+	
+	position: absolute;
+	z-index: 2;
+	width: 300px;
+	height: 100%;
+	background: #FFF7B9;
+	outline: 3px solid #777;
+	
+}
+
+div#EDAGAMEMenu2 {
+
+	position: relative;
+	top: 50%;
+	right: 0;
+	z-index: 2;
+	outline: 3px solid #777;
+	transform: translate(0, -50%);
+	-webkit-transform: translate(0, -50%);
+	-khtml-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+
+}
+
+div#EDAGAMEMenu2:hover {
+
+	z-index: 3;
+
+}
+
+div#EDAGAMEMenu1 {
+
+	position: relative;
+	display: block;
+	overflow: hidden;
+	border-right: none;
+	border-left: none;
+	background: #FFF;
+
+}
+
+/********** 4. EDA MENU **********/
+
+img#EDAGAMELogo1 {
+
+	display: block;
+	height: 20px;
+	margin: 0 auto;
+	margin-top: 5px;
+
+}
+
+div#EDAGAMEEdaCover {
+
+	position: relative;
+	display: block;
+	margin: 5px auto;
+	margin-left: 5px;
+	margin-right: 5px;
+
+}
+
+img#EDAGAMEEda {
+
+	display: block;
+	width: 287px;
+	height: 209px;
+
+}
+
+img#EDAGAMERepeat {
+
+	position: absolute;
+	display: none;
+	top: 0;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+
+}
+
+img#EDAGAMERepeat2 {
+
+	position: absolute;
+	display: none;
+	top: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+
+}
+
+img#EDAGAMESpeaker {
+
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 50px;
+	height: 50px;
+
+}
+
+img#EDAGAMENote {
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+
+}
+
+/********** 5. TASK, SCORE, SETTINGS **********/
+
+div#EDAGAMETask {
+
+	position: relative;
+	opacity: 1;
+	padding: 5px 0 5px 0;
+	display: none;
+	text-align: center;
+	background: #FFFED0;
+	border-top: 1px solid #000;
+
+}
+
+img#EDAGAMEPoint {
+
+	position: relative;
+	display: block;
+	margin: 0 auto;
+
+}
+
+span#EDAGAMEScorePanel {
+
+	font-weight: bold;
+	letter-spacing: 3px;
+	font-size: 25px;
+
+}
+
+div#EDAGAMEScoreIMG {
+
+	height: 50px;
+
+}
+
+img.EDAGAMEStar {
+
+	display: inline-block;
+	width: 23px;
+	height: 23px;
+	vertical-align: middle;
+	margin: 2px 2.3px 0 2.3px;
+
+}
+
+img#EDAGAMESettingsIcon {
+	
+	width: 20px;
+	padding: 5px 0 0 3px;
+	cursor: pointer;
+	
+}
+
+/********** 6. OBJECTS **********/
+
+img.EDAGAMEObject {
+
+	position: absolute;
+	display: none;
+	z-index: 1;
+	cursor: pointer;
+
+}
+
+/********** 7. INTRODUCTION **********/
+
+div#EDAGAMEBackground {
+
+	position: absolute;
+	display: none;
+	z-index: 9999999999;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.65);
+
+}
+
+div#EDAGAMECover {
+
+	position: relative;
+	top: 50%;
+	margin: 0 auto;
+	transform: translate(0, -50%);
+	-webkit-transform: translate(0, -50%);
+	-khtml-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+
+}
+
+div#EDAGAMEReflector {
+
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+	display: block;
+	width: 0;
+	height: 0;
+	background: #FFF9BC;
+	border: 0 solid #000;
+	border-radius: 300px;
+	z-index: 9999999999;
+
+}
+
+img#EDAGAMEIntroEda {
+
+	position: absolute;
+	z-index: 99999;
+	top: 285px;
+
+}
+
+div#EDAGAMEIntro {
+
+	position: relative;
+	top: 50%;
+	display: none;
+	margin: 0 auto;
+	text-align: center;
+	transform: translate(0, -50%);
+	-webkit-transform: translate(0, -50%);
+	-khtml-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+
+}
+
+img#EDAGAMELogo2 {
+
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 5px;
+
+}
+
+span#EDAGAMETitle {
+
+	position: relative;
+	font-size: 17px;
+	cursor: default;
+
+}
+
+img#EDAGAMEHands {
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 999999;
+	display: none;
+
+}
+
+div#EDAGAMESkip {
+
+	position: relative;
+	opacity: 0;
+	overflow: hidden;
+	margin: 20px auto 0;
+	width: 65px;
+	height: 65px;
+	background: url('images/other/Skip.png') center #FFF9BC no-repeat;
+	border: 5px solid #000;
+	border-radius: 300px;
+	z-index: 999999999;
+
+}
+
+div#EDAGAMESkip:hover {
+
+	background-color: #FFF486 !important;
+
+}
+
+/********** 8. CHECKER, CONGRATULATION, EXITS **********/
+
+div#EDAGAMEArea {
+
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+
+}
+
+img#EDAGAMEChecker {
+
+	position: relative;
+	top: 50%;
+	margin-top: -60px !important;
+	display: none;
+	opacity: 0;
+	z-index: 999999;
+	margin: 0 auto;
+	width: 120px;
+	height: 120px;
+	cursor: auto;
+
+}
+
+div#EDAGAMECongratulation {
+
+	top: 50%;
+	width: 500px;
+	text-align: center;
+	overflow: inherit !important;
+	border-bottom-right-radius: 10px !important;
+
+}
+
+img#EDAGAMEExit1, img#EDAGAMEExit2 {
+
+	position: absolute;
+	z-index: 999999999;
+	top: -20px;
+	right: -20px;
+	height: 40px;
+	width: 40px;
+	background: #FFF;
+	border: 2px solid #333 !important;
+	border-radius: 100px;
+	padding: 5px;
+	cursor: pointer;
+
+}
+
+span.EDAGAMECongrats1 {
+
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	font-size: 30px;
+	margin-bottom: 10px;
+	color: #FFD915;
+	text-shadow: 1px 1px 1px #000;
+
+}
+
+span.EDAGAMECongrats2 {
+
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+
+}
+
+img#EDAGAMERepeatIMG {
+
+	position: relative;
+	display: block;
+	cursor: pointer;
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+
+}
+
+/********** 9. PAIRS **********/
+
+div#EDAGAMEPairs {
+
+	top: 50%;
+	width: 670px;
+	text-align: center;
+	overflow: inherit !important;
+	border-bottom-right-radius: 10px !important;
+
+}
+
+div.EDAGAMEFigure {
+
+	margin: 10px 13px 0 0;
+	background: #F7F5BA;
+	border: 1px solid #B5B4B4;
+	border-radius: 10px;
+	display: inline-block;
+	overflow: hidden;
+	cursor: pointer;
+	-webkit-transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+
+}
+
+div.EDAGAMEFigure:hover {
+
+	background-color: #FFEF49 !important;
+	-webkit-transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+
+}
+
+div.EDAGAMEFigure:last-child {
+
+	margin-right: 0;
+
+}
+
+span.EDAGAMEBecauseOfTheInformationSound {
+
+	position: absolute;
+	display: block;
+	width: 152px;
+	height: 186px;
+	margin: -1px 0 0 -1px;
+	border-radius: 10px;
+
+}
+
+img.EDAGAMEPaiIcon {
+
+	display: block;
+	width: 150px;
+	height: 150px;
+
+}
+
+span.EDAGAMEPai {
+
+	display: block;
+	font-weight: bold;
+	background: #FAF3D7;
+	border-top: 1px solid #B5B4B4;
+	padding: 5px;
+	color: #4A4A4A;
+
+}
+
+/********** 10. WEBSITE **********/
+
+div#EDAGAMEAboutTheGame, div#EDAGAMEAutors, div#EDAGAMEHistory, div#EDAGAMEWriteUs {
+	
+	width: 500px;
+	
+}
+
+div.EDAGAMEArticle {
+	
+	position: relative;
+	top: 50%;
+	z-index: 9999999999;
+	display: none;
+	max-height: 500px;
+	overflow: auto;
+	margin: 0 auto;
+	padding: 20px;
+	font-family: Open Sans, 'sans-serif';
+	text-align: left;
+	border: 2px solid #333;
+	background: #FFF;
+	cursor: default;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	transform: translate(0, -50%);
+	-webkit-transform: translate(0, -50%);
+	-khtml-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+	
+	
+}
+
+img#EDAGAMEExitAboutTheGame, img#EDAGAMEExitAutors, img#EDAGAMEExitHistory, img#EDAGAMEExitWriteUs {
+
+	position: absolute;
+	z-index: 999999999;
+	top: 8px;
+	right: 20px;
+	height: 40px;
+	width: 40px;
+	background: #FFF;
+	border: 2px solid #333 !important;
+	border-radius: 100px;
+	padding: 5px;
+	cursor: pointer;
+
+}
+
+span.EDAGAMEArticleTitle {
+
+	display: block;
+	font-weight: bold;
+	font-size: 30px;
+	color: #8E8E8E;
+
+}
+
+span.EDAGAMEArticleCaption {
+
+	font-size: 17px;
+	color: #9A9A9A;
+	text-transform: uppercase;
+	font-weight: bold;
+
+}
+
+div.EDAGAMEArticleParagraph {
+
+	display: block;
+	margin: 10px 10px;
+
+}
+
+img.EDAGAMEArticleBlockImage {
+	
+	display: block;
+	margin: 0 0 5px 0;
+	
+}
+
+span.EDAGAMEArticleInformation {
+
+	font-weight: bold;
+	text-decoration: underline;
+
+}
+
+a.EDAGAMETheOfficialWork {
+	
+	text-decoration: none;
+	font-weight: bold;
+	
+}
+
+span.EDAGAMEBrowsers {
+	
+	display: block;
+	text-align: center;
+	
+}
+
+span.EDAGAMEBrowserColumn {
+	
+	display: inline-block;
+	
+}
+
+img#EDAGAMEImageIE, img#EDAGAMEImageGCH, img#EDAGAMEImageMF, img#EDAGAMEImageO {
+	
+	width: 60px;
+	
+}
+
+img.EDAGAMEArticleInlineImage {
+	
+	float: left;
+	margin: 0 10px 5px 10px;
+	
+}
+
+span.EDAGAMEBrowserVersion {
+	
+	display: block;
+	font-size: 13px;
+	text-align: center;
+	margin-bottom: 15px;
+	
+}
+
+img#EDAGAMEImageS {
+	
+	width: 62px;
+	
+}
+
+img#EDAGAMEImageTablet {
+	
+	width: 200px;
+	margin: 0 auto;
+	margin-bottom: 5px;
+	
+}
+
+img#EDAGAMEImageMobile {
+	
+	width: 70px;
+	margin: 0 auto;
+	margin-bottom: 5px;
+	
+}
+
+
+
+span.EDAGAMEArticleHighlight {
+
+	font-weight: bold;
+
+}
+
+span.EDAGAMEThankYou {
+	
+	position: relative;
+	top: 50%;
+	float: left;
+	transform: translate(0, -50%);
+	-webkit-transform: translate(0, -50%);
+	-khtml-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+	
+}
+
+span.EDAGAMEArticleIndentation {
+
+	margin-left: 50px;
+
+}
+
+img#EDAGAMEThankYou {
+	
+	float: right;
+	
+}
+
+div.EDAGAMEHistoryBorder {
+	
+	display: block;
+	border-left: 10px solid #c0c0c0;
+	
+}
+
+span#EDAGAMEHistoryYear15, span#EDAGAMEHistoryYear1516, span#EDAGAMEHistoryYear16 {
+	
+	position: relative;
+	top: 50%;
+	float: left;
+	margin-left: 10px;
+	transform: translate(0, -50%);
+	-webkit-transform: translate(0, -50%);
+	-khtml-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+	
+	
+}
+
+input.gbText.gbW300 {
+	
+	margin-left: 0 !important;
+	
+}
+
+a#BrolmoGBook_29140 {
+	
+	position: absolute !important;
+	display: none !important;
+	
+}
+
+/********** 11. BOTTOM MENU **********/
+
+div#EDAGAMEWebsite {
+	
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	
+}
+
+div#EDAGAMEPaiChecker {
+
+	display: block;
+	width: 100%;
+	text-align: center;
+
+}
+
+div#EDAGAMEPaiKit {
+
+	position: relative;
+	display: none;
+	bottom: -45px;
+	margin: 0 auto;
+
+}
+
+div#EDAGAMEPaiKitInside {
+
+	width: 400px;
+	margin: 0 auto;
+
+}
+
+img#EDAGAMEExit3 {
+	
+	position: absolute;
+	margin-left: -25px;
+	z-index: 999999999;
+	height: 40px;
+	width: 40px;
+	background: #FFF;
+	border: 2px solid #333 !important;
+	border-radius: 100px;
+	padding: 5px;
+	cursor: pointer;
+	
+}
+
+img#EDAGAMEPairsLeft {
+
+	border-top-left-radius: 10px;	
+	
+}
+
+img#EDAGAMEPairsRight {
+
+	border-top-right-radius: 10px;
+	border-left: none !important;	
+	
+}
+
+img#EDAGAMEPairsLeft, img#EDAGAMEPairsRight {
+
+	position: relative;
+	z-index: 99999999;
+	background: #FFF;
+	width: 130px;
+	height: 130px;
+	padding: 10px;
+	margin: 25px 0 auto;
+	border: 2px solid #555;
+	border-bottom: none;
+	text-align: center;
+
+}
+
+div#EDAGAMECatch {
+
+	position: relative;
+	display: none;
+	bottom: -44px;
+	z-index: 99999999;
+	min-width: 930px;
+
+}
+
+img.EDAGAMECatch {
+
+	width: 40px;
+	height: 40px;
+	vertical-align: middle;
+	border: 1px solid #000;
+	border-top: none;
+	background: #EEE8AA;
+
+}
+
+div#EDAGAMEMainMenu2 {
+	
+	position: relative;
+	bottom: 0;
+	z-index: 2;
+	display: table;
+	width: 100%;
+	height: 120px;
+	background: #FFF7B9;
+	border-top: 3px solid #777;
+	box-sizing: border-box; 
+	
+}
+
+div#EDAGAMELogo3Cover {
+
+	display: table-cell;
+	vertical-align: middle;
+	width: 200px;
+	text-align: center;
+
+}
+
+img#EDAGAMELogo3 {
+
+	display: block;
+	margin: 0 auto;
+	padding: 0 5px 0 5px;
+
+}
+
+span#EDAGAMEInformations {
+
+	cursor: default;
+	font-size: 11px;
+	color: #444;
+
+}
+
+div#EDAGAMEMainMenu1 {
+	
+	display: table-cell;
+	vertical-align: middle;
+	
+}
+
+div#EDAGAMELink {
+
+	position: relative;
+	display: table;
+	float: right;
+	overflow: hidden;
+	background: rgb(255, 249, 188);
+	cursor: pointer;
+	min-width: 450px;
+	height: 100%;	
+	-webkit-transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+
+}
+
+div#EDAGAMELink:hover {
+
+	background: #FFF486;	
+	-webkit-transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+
+}
+
+img#EDAGAMELinkBG {
+
+	position: absolute;
+	top: 50%;
+	height: 100px;
+	margin: 0 5px 0 5px;
+	margin-top: -50px;
+	float: left;
+
+}
+
+span#EDAGAMELinkSPAN {
+
+	position: relative;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
+	padding: 0 32px 0 32px;
+	height: 100%;
+	font-size: 30px;
+	font-weight: bold;
+	color: #666;
+	text-decoration: none;
+	letter-spacing: 2.5px;
+	-webkit-transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+
+}
+
+span#EDAGAMELinkSPAN:hover {
+
+	color: #333;
+	-webkit-transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+
+}
+
+/********** 12. NUMBER **********/
+
+div#EDAGAMENumber {
+
+	display: none;
+
+}
